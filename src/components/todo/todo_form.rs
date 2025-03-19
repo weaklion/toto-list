@@ -29,18 +29,16 @@ pub fn todo_form(props: &TodoFormProps) -> Html {
         let title = title.clone();
         Callback::from(move |e: MouseEvent| {
             e.prevent_default();
-            title.set("".to_string());
-            on_add.emit((*title).clone())
+            on_add.emit((*title).clone());
+            title.set("".to_string())
         })
     };
 
     html! {
-      <form class="mb-5 ">
+      <form class="mb-5">
       <div class="flex items-center gap-x-2 ">
-          <label for="title" class="form-label">{"타이틀"}</label>
-
-          <input type="text" class="form-control" {onchange} id="title" />
-        <button type="submit" class="btn btn-primary" {onclick}>{"추가"}</button>
+          <input type="text" class="border rounded" {onchange} value={(*title).clone()} id="title" />
+        <button type="submit" class="border rounded-lg px-4 py-2" {onclick}>{"추가"}</button>
         </div>
       </form>
     }
